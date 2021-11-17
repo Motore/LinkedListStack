@@ -5,6 +5,7 @@
 #include "ChiliString.h"
 #include "Stack.h"
 
+
 void test1()
 {
 	Stack s;
@@ -120,8 +121,7 @@ void test6()
 }
 
 void test7()
-{
-	Stack s;
+{	Stack s;
 	s.Push( 5 );
 	s.Push( 3 );
 
@@ -161,15 +161,39 @@ void test8()
 	}
 }
 
+void test9()
+{
+	Stack s;
+	s.Push(5);
+	s.Push(3);
+
+	{
+		Stack s2;
+		s2.Push(33);
+		s2 = s;
+		s2.Pop();
+	}
+
+	if (s.Size() == 2 && s.Pop() == 3)
+	{
+		chili::print("    Test 9 passed!\n");
+	}
+	else
+	{
+		chili::print("*** Test 9 failed!\n");
+	}
+}
+
+
 int main()
 {
-	_CrtSetReportMode( _CRT_WARN,_CRTDBG_MODE_FILE );
-	_CrtSetReportFile( _CRT_WARN,_CRTDBG_FILE_STDERR );
-	_CrtSetReportMode( _CRT_ERROR,_CRTDBG_MODE_FILE );
-	_CrtSetReportFile( _CRT_ERROR,_CRTDBG_FILE_STDERR );
-	_CrtSetReportMode( _CRT_ASSERT,_CRTDBG_MODE_FILE );
-	_CrtSetReportFile( _CRT_ASSERT,_CRTDBG_FILE_STDERR );
-	
+	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
+	_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDERR);
+	_CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_FILE);
+	_CrtSetReportFile(_CRT_ERROR, _CRTDBG_FILE_STDERR);
+	_CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
+	_CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
+
 	test1();
 	test2();
 	test3();
@@ -178,8 +202,9 @@ int main()
 	test6();
 	test7();
 	test8();
+	test9();
 
 	_CrtDumpMemoryLeaks();
-	while( !_kbhit() );
+	while (!_kbhit());
 	return 0;
 }
